@@ -1,5 +1,5 @@
 .venv
 venv
-_pycache_
+__pycache__
 .idea
 words.db

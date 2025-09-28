@@ -31,6 +31,14 @@ UPDATE_WORD = "UPDATE words SET word = ?, translated = ? WHERE id = ?"
 DELETE_WORD = "DELETE FROM words WHERE id = ?"
 
 INSERT_WORD_WITH_THEMEID = "INSERT INTO words (word, translated, theme_id) VALUES (?,?,?)"
-SELECT_WORD_BY_THEME = "SELECT words.word, words.translated FROM words JOIN theme ON words.theme_id = theme.id WHERE theme.id = ?"
+SELECT_WORD_BY_THEME = "SELECT words.id, words.word, words.translated FROM words JOIN theme ON words.theme_id = theme.id WHERE theme.id = ?"
+SELECT_ID_BY_WORDTHEME = "SELECT id FROM words WHERE word = ? AND theme_id = ?"
+
+
+
+
+SELECT_ONLY_ID_WORD = "SELECT id FROM words WHERE theme_id=?"
+GET_EXIST_ID = 'SELECT id FROM theme ORDER BY id' 
+SELECT_WORD_BY_ID = "SELECT word, translated FROM words WHERE id=?"
 
 

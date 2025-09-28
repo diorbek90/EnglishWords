@@ -8,3 +8,5 @@ button_for_theme =ft.ButtonStyle(
         shape=ft.RoundedRectangleBorder(radius=12),
         elevation=4,
     )
+
+text = ft.Text

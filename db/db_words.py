@@ -30,7 +30,39 @@ def get_words_by_theme(id):
     
     return result
 
-def get_words():
+
+def delete_word_by_id(id):
+    conn = sqlite3.connect('words.db')
+    cursor = conn.cursor()
+    
+    result = cursor.execute(queries.DELETE_WORD, (id,))
+    conn.commit()
+    conn.close()
+    
+    return result
+
+def get_id_by_word(word, theme_id):
+    conn = sqlite3.connect('words.db')
+    cursor = conn.cursor()
+    
+    result = cursor.execute(queries.SELECT_ID_BY_WORDTHEME, (word, theme_id,)).fetchall()
+    conn.commit()
+    conn.close()
+    return result
+
+def get_word_by_id(id):
+    conn = sqlite3.connect('words.db')
+    cursor = conn.cursor()
+    
+    cursor.execute(queries.SELECT_WORD_BY_ID, (id,))
+    word_data = cursor.fetchone()
+    
+    conn.commit()
+    conn.close()
+
+    return word_data
+
+def get_words(): 
     conn = sqlite3.connect('words.db')
     cursor = conn.cursor()
     
@@ -88,4 +120,41 @@ def get_theme():
     get_themes = cursor.fetchall()
 
     return get_themes
+
+def delete_theme_by_id(theme_id):
+    conn = sqlite3.connect('words.db')
+    cursor = conn.cursor()
+    
+    cursor.execute(queries.DELETE_THEME, (theme_id,))
+    
+    conn.commit()
+    conn.close()
+    
+    
+
+def get_only_exist_id():
+    conn = sqlite3.connect("words.db")
+    cur = conn.cursor()
+
+    cur.execute(queries.GET_EXIST_ID)
+    ids = [row[0] for row in cur.fetchall()]
+    
+    conn.commit()
+    conn.close()
+    
+    return ids
+
+def get_only_exist_words_id(theme_id):
+    conn = sqlite3.connect('words.db')
+    cursor = conn.cursor()
+    
+    cursor.execute(queries.SELECT_ONLY_ID_WORD, (theme_id,))
+    word_ids = [row[0] for row in cursor.fetchall()]
+    
+    conn.commit()
+    conn.close()
+    return word_ids
+
+
+
 
